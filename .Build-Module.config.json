@@ -1,0 +1,15 @@
+{
+    "Manifest": {
+        "Guid": "2f7008be-ffb1-4be7-a41e-27de2c006c94",
+        "Author": "Brett Gerhardi",
+        "Description": "Lightweight army of helpers for general powershell activities",
+        "ProjectURI": "https://github.com/o-o00o-o/PSEasy.Utility",
+        "Tags": "PSEdition_Core"
+    },
+    "File":{
+        "FileSpec": "*-*.ps1",
+        "ExcludeSpec": ["*.Tests.ps1", "Import-ModuleFunction.ps1"],
+        /* "PublicOnlyIfIndicated" or "'PublicByDefault" */
+        "ExportMode": "PublicByDefault"
+    }
+}
