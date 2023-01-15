@@ -22,7 +22,7 @@ so we rename through another change by adding !!! to the filename also
 1. Rename in a 2 stage process from Salesforce to salesforce and keep GIT consistent
 
 $renameParams = @{
-    Folder = '.\src\VegaDW.Database\Model\Source\PartnerPlatform.dbo.Partners\'
+    Folder = '.\somePath\'
     Find = '([_.]|\b|^)Salesforce([_.])'
     Replace = '$1salesforce$2'
     CaseOnlyChange = $true
@@ -33,7 +33,7 @@ $renameParams = @{
 2. Rename stash folders, files and contents of files
 
 ## Set the following variables and run the full example (can run individually if you like)
-$folder = '.\src\VegaDW.Database\Model\'
+$folder = '.\somePath\'
 $replacePairs = @(
     [PSCustomObject]@{Original = 'Mds'; Replace = 'mds'}
     [PSCustomObject]@{Original = 'Salesforce'; Replace = 'salesforce'}

@@ -6,8 +6,7 @@ Converts a secure string to a 32bit AES Key for use with ConvertFrom/To-SecureSt
 The secure string password to convert to the key
 
 .EXAMPLE
-$context = vegacontext -Secrets @{'config.settings.applicationCredentialsPassword'='blahpassword'}
-$ApplicationKey = ConvertTo-AesKey (Get-ObjectModelValue -ObjectModel $context -Path 'vegaKeyName' -SecretsOnly)
+$ApplicationKey = ConvertTo-AesKey (Get-SecureString)
 #>
 function ConvertTo-AesKey {
   param (

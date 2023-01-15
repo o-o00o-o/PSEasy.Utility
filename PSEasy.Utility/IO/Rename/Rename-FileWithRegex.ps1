@@ -5,7 +5,7 @@ Uses Regex to find and replace
 .EXAMPLE
 
 $splat = @{
-    Folder = .\src\VegaDW.Database\Model\Source\PartnerPlatform.dbo.Partners\
+    Folder = .\somePath\
     Regex = '(stash\.)([_a-zA-Z0-9]+)_(\.sql)'
     RegexReplace = '$1CLEANUP_$2$3'
 }

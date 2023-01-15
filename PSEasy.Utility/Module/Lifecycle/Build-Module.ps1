@@ -151,9 +151,6 @@ function Build-Module {
             # import into our session
             if ($Import) { Import-Module "$ModulePath\" -Force -Verbose -Global}
 
-            # if ($PublishToFeed) {
-            #     Publish-NugetPackage -NugetPath ($VegaContext.nugetPath) -FeedName $PublishToFeed
-            # }
         }
     }
     end {

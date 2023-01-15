@@ -16,7 +16,7 @@ if (-not (& "$PSScriptRoot\Test-PSSessionVariableEntry.ps1" -VariableName $Sessi
 function Add-PSSessionEntry {
     param(
         [parameter(Mandatory)]
-        [string] $GlobalVariableName, # = 'VegaDependencies'
+        [string] $GlobalVariableName,
         [parameter(Mandatory)]
         [string] $CollectionName,
         [parameter(Mandatory)]
