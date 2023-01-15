@@ -2,11 +2,9 @@
 .SYNOPSIS
 Gets the value for an Environment Variable
 
-.DESCRIPTION
-
 .EXAMPLE
-get-environmentvariable -name 'path' -Verbose
-C:\Users\bgerhardi\AppData\Local\Microsoft\WindowsApps;C:\Users\bgerhardi\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bgerhardi\AppData\Local\Programs\Azure Data Studio\bin;C:\Users\bgerhardi\.dotnet\tools;C:\Users\bgerhardi\AppData\Local\Microsoft\WindowsApps;C:\Users\bgerhardi\AppData\Local\Programs\Fiddler;C:\Users\bgerhardi\AppData\Roaming\npm
+Get-EnvironmentVariable -Name 'path' -verbose
+
 .NOTES
 It seems that this clashes with a module-less function that exists on Azure Devops pipelines Microsoft Agents
 with the following definition.
@@ -29,6 +27,7 @@ function Get-EnvironmentVariable {
         [Parameter()][System.EnvironmentVariableTarget]$Target = [System.EnvironmentVariableTarget]::User
     )
     $MyInvocation.BoundParameters | Format-List | Out-String | Write-Debug
+
     if ($PSCmdlet.ParameterSetName -eq 'AdoPipeline' -and -not $MyInvocation.BoundParameters.ContainsKey('Target')) {
         Write-Verbose 'Detected Ado Pipeline mode, switching Target to be Machine scope environment variable'
         $Target = [System.EnvironmentVariableTarget]::Machine
