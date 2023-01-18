@@ -6,6 +6,8 @@ function Get-ObjectModelValue {
         # array of known secret paths to check against for extra checking
         [Parameter()][string[]]$KnownSecrets = @()
     )
+    # TODO change this to walking up the properties
+    # Also check we are PSCustomObject all the way to prevent mistakes forgetting to convert hashtable to pscustobject
     # Only execute this if we think it is safe to prevent injection attacks
     if (Test-ObjectModelPathIsSafe -ObjectModel $ObjectModel -Path $path -KnownSecrets $KnownSecrets) {
         $out = Invoke-Expression "`$ObjectModel.$Path"
