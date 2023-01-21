@@ -35,6 +35,7 @@
 . "$PSScriptRoot\Data\PSSessionVariable\Test-PSSessionEntry.ps1"
 . "$PSScriptRoot\Data\SecureString\ConvertTo-AesKey.ps1"
 . "$PSScriptRoot\Data\SecureString\Test-SecureStringEmpty.ps1"
+. "$PSScriptRoot\Data\Value\Get-HashtableFromRemainingArgument.ps1"
 . "$PSScriptRoot\Data\Value\Get-NullIf.ps1"
 . "$PSScriptRoot\Data\Value\Get-NullIfDBNull.ps1"
 . "$PSScriptRoot\Data\Xml\Format-Xml.ps1"
@@ -61,5 +62,7 @@
 . "$PSScriptRoot\Module\Script\Add-ModuleManifestExport.ps1"
 . "$PSScriptRoot\Module\Script\Get-ScriptNature.private.ps1"
 . "$PSScriptRoot\Module\Script\Test-Script.ps1"
+. "$PSScriptRoot\UserPrivilege\Invoke-PowershellAsUser.ps1"
+. "$PSScriptRoot\UserPrivilege\Invoke-RunAs.ps1"
 . "$PSScriptRoot\UserPrivilege\Test-UserPrivilegeAdmin.ps1"
 
