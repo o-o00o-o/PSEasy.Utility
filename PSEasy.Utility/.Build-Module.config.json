@@ -5,7 +5,7 @@
         "Description": "Lightweight army of helpers for general powershell activities",
         "ProjectURI": "https://github.com/o-o00o-o/PSEasy.Utility",
         "Tags": "PSEdition_Core",
-        "NestedModules": "ErrorView"
+        "NestedModules": ["ErrorView"]
     },
     "File":{
         "FileSpec": "*-*.ps1",
