@@ -5,25 +5,25 @@ Will find the current or parent folder that has a folder with the given name in.
 .DESCRIPTION
 Useful for finding log folders/ .git folders etc
 
-
 .OUTPUTS
-the Item or null if not found
+the Item or null if not found. The caller should handle if an item was expected but null.
 
 .NOTES
 General notes
 #>#>
 function Find-Item {
     param(
-        # starting path
-        [Parameter()][string]$Path = $null,
-        # for future use. Up goes up through parent directories until it finds a folder with the item name in
+        # starting path. If not given will use current location
+        [Parameter()][string]$Path,
+        # for future use. Up goes up through parent directories until it finds a folder with the item name in. Down currently not supported.
         [Parameter()][ValidateSet('Up')][string]$Direction = 'Up',
         # the item name to find
         [Parameter(Mandatory)][string]$ItemName,
+        # Only find Directories with the given ItemName
         [Parameter()][switch]$Directory,
+        # Return the parent of the found item (e.g. .git)
         [Parameter()][switch]$Parent
     )
-    # find the first parent with .git folder
     $currentPath = $null
 
     if ($Path) {
@@ -68,6 +68,6 @@ function Find-Item {
             Write-Output (Get-ChildItem $foundFolder $ItemName -Force)
         }
     } else {
-        throw "Unable to Find item $ItemName in $Path direction $Direction"
+        Write-Verbose "Unable to Find item $ItemName in $($Path.FullName) direction $Direction"
     }
 }
