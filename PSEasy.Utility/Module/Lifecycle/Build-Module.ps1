@@ -58,7 +58,7 @@ Install-ModuleFromFolder
 #>
 function Build-Module {
     param(
-        [parameter(Mandatory, ValueFromPipeline)][ValidateNotNullOrEmpty()][string[]]$ModulePath,
+        [parameter(ValueFromPipeline)][ValidateNotNullOrEmpty()][string[]]$ModulePath = $pwd,
         [parameter()][switch] $Load,
         # [parameter()][switch] $Clean,
         [parameter()][switch] $Import

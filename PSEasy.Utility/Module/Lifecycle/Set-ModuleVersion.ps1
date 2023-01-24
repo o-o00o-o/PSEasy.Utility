@@ -19,7 +19,7 @@ General notes
 function Set-ModuleVersion {
     [CmdletBinding(SupportsShouldProcess)]
     param (
-        [Parameter(Mandatory)][string]$ModulePath,
+        [Parameter()][string]$ModulePath = $pwd,
         [Parameter(Mandatory)][ValidateSet('Major', 'Minor', 'Patch', 'None')][string]$VersionIncrementType
     )
 

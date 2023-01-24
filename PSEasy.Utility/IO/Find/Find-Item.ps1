@@ -28,13 +28,15 @@ function Find-Item {
 
     if ($Path) {
         $startingPath = Get-Item -literalPath $Path -force
-    } else {
+    }
+    else {
         $startingPath = Get-Item -literalPath (Get-Location) -force
     }
 
     if ($Directory) {
         $PathType = 'Container'
-    } else {
+    }
+    else {
         $PathType = 'Any'
     }
 
@@ -42,10 +44,12 @@ function Find-Item {
     do {
         if ($null -eq $currentPath) {
             $currentPath = $startingPath
-        } else {
+        }
+        else {
             if ($Direction -eq 'Up') {
                 $currentPath = $currentPath.Parent
-            } else {
+            }
+            else {
                 throw "Only Direction Up currently supported"
             }
         }
@@ -56,9 +60,14 @@ function Find-Item {
         }
     } while ($null -eq $foundFolder -and $null -ne $currentPath.parent)
 
-    if ($Parent) {
-        Write-Output (Split-Path (Get-ChildItem $foundFolder $ItemName -Force) -Parent)
+    if ($foundFolder) {
+        if ($Parent) {
+            Write-Output (Split-Path (Get-ChildItem $foundFolder $ItemName -Force) -Parent)
+        }
+        else {
+            Write-Output (Get-ChildItem $foundFolder $ItemName -Force)
+        }
     } else {
-        Write-Output (Get-ChildItem $foundFolder $ItemName -Force)
+        throw "Unable to Find item $ItemName in $Path direction $Direction"
     }
 }
