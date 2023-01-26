@@ -7,7 +7,7 @@
 . "$PSScriptRoot\Data\EnvironmentVariable\Get-EnvironmentVariable.ps1"
 . "$PSScriptRoot\Data\EnvironmentVariable\Set-EnvironmentVariable.ps1"
 . "$PSScriptRoot\Data\Error\Get-CleanErrorString.ps1"
-. "$PSScriptRoot\Data\Error\Set-ErrorView.ps1"
+. "$PSScriptRoot\Data\Error\Set-ErrorViewIfPossible.ps1"
 . "$PSScriptRoot\Data\Generic\Invoke-GenericMethod.ps1"
 . "$PSScriptRoot\Data\Hash\Get-Hash.ps1"
 . "$PSScriptRoot\Data\Hashtable\Add-HashtableItem.ps1"
