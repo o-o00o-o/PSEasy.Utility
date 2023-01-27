@@ -62,7 +62,6 @@
 . "$PSScriptRoot\Module\Script\Add-ModuleManifestExport.ps1"
 . "$PSScriptRoot\Module\Script\Get-ScriptNature.private.ps1"
 . "$PSScriptRoot\Module\Script\Test-Script.ps1"
-. "$PSScriptRoot\UserPrivilege\Invoke-PowershellAsUser.ps1"
-. "$PSScriptRoot\UserPrivilege\Invoke-RunAs.ps1"
+. "$PSScriptRoot\UserPrivilege\Invoke-ImpersonatedCommand.ps1"
 . "$PSScriptRoot\UserPrivilege\Test-UserPrivilegeAdmin.ps1"
 
