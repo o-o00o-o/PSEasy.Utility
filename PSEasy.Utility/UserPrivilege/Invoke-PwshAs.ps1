@@ -11,8 +11,12 @@ An example
 .NOTES
 General notes
 #>#>
-function Invoke-PowershellAsUser {
+function Invoke-PwshAs {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        <#Category#>'PSUseSingularNouns', <#CheckId#>'',
+        Justification = 'PwshAs is singular'
+    )]
     param (
         [Parameter()][pscredential]$Credential,
         [Parameter()][switch]$NoProfile,

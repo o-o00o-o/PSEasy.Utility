@@ -33,7 +33,7 @@ function Test-ObjectModelPathIsSafe {
                         $return = $true
                     }
                 } elseif ($returnedTypeName -eq "PropertyName") {
-                    if ($KnownSecrets.IsPresent -and $value.Value.GetType().Name -ne 'SecureString') {
+                    if ($KnownSecrets -and $value.Value.GetType().Name -ne 'SecureString') {
                         Write-Warning "$Path expects type SecureString but was $($value.Value.GetType().Name). Skipping"
                     } else {
                         $return = $true

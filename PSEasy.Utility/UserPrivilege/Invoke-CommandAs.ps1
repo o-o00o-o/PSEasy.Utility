@@ -31,7 +31,11 @@ An example
 .NOTES
 General notes
 #>#>
-function Invoke-ImpersonatedCommand {
+function Invoke-CommandAs {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        <#Category#>'PSUseSingularNouns', <#CheckId#>'',
+        Justification = 'CommandAs is singular'
+    )]
     param(
         # user can be either domain\user or user@domain
         [Parameter(Mandatory, ParameterSetName = 'cred')][pscredential]$Credential,

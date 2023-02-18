@@ -1,6 +1,7 @@
 <##https://stackoverflow.com/questions/46535321/run-start-process-with-switch-netonlytype-9-logon
 #>
 function Start-Impersonate {
+    [CmdletBinding(SupportsShouldProcess)]
     param(
         $User,
         $Domain,
@@ -17,14 +18,15 @@ public static extern bool DuplicateToken(IntPtr token, int impersonationLevel, r
 public static extern Boolean CloseHandle(IntPtr hObject);
 "@ -PassThru
     [System.IntPtr]$userToken = [System.IntPtr]::Zero
+
     if ($NetOnly) {
         $Type = 9 # net only LOGON32_LOGON_NEW_CREDENTIALS
     } else {
         $Type = 2 # LOGON32_LOGON_INTERACTIVE full login
     }
+
     $success = $ImpersonationLib::LogonUser($User, # UserName
-        $Domain,
-        # Domain
+        $Domain,   # Domain
         $Password, #Password
         $Type, # LogonType
         0, # LOGON32_PROVIDER_DEFAULT
@@ -41,12 +43,15 @@ public static extern Boolean CloseHandle(IntPtr hObject);
         $null = $ImpersonationLib::CloseHandle($userToken)
         $userToken = [System.IntPtr]::Zero
     }
+
     # Current user.
     Write-Host "Before impersonation: UserName:
 $([Security.Principal.WindowsIdentity]::GetCurrent().Name)" -ForegroundColor Cyan
     # Do the impersonation.
     # $context = $Identity.Impersonate()
-    Write-Output $Identity.Impersonate()
+    if ($PSCmdlet.ShouldProcess('Start Impersonation')) {
+        Write-Output $Identity.Impersonate()
+    }
     # New user.
     # Write-Host "After impersonation: UserName: $([Security.Principal.WindowsIdentity]::GetCurrent().Name)" -ForegroundColor Cyan
 
