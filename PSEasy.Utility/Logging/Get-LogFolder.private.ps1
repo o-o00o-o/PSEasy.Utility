@@ -19,7 +19,9 @@ function Get-LogFolder {
                 Write-Warning "Found log folder $($logFolder.FullName) however we couldn't write a file to it so we are falling back to the temp folder. ($_)"
             }
             finally {
-                $null = Remove-Item $testFilename -WhatIf:$false -Confirm:$false
+                if (Test-Path $testFilename) {
+                    $null = Remove-Item $testFilename -WhatIf:$false -Confirm:$false
+                }
             }
         }
     }
