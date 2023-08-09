@@ -19,6 +19,7 @@
 . "$PSScriptRoot\Data\PerformanceRecord\Get-PerformanceRecordKey.private.ps1"
 . "$PSScriptRoot\Data\PerformanceRecord\Get-PerformanceRecordMessage.private.ps1"
 . "$PSScriptRoot\Data\PerformanceRecord\Get-PerformanceStore.ps1"
+. "$PSScriptRoot\Data\PerformanceRecord\Measure-Command2.ps1"
 . "$PSScriptRoot\Data\PSObject\ObjectModel\Get-ObjectModelValue.ps1"
 . "$PSScriptRoot\Data\PSObject\ObjectModel\Set-ObjectModelValue.ps1"
 . "$PSScriptRoot\Data\PSObject\ObjectModel\Test-ObjectModelPathIsSafe.ps1"

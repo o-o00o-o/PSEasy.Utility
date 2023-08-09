@@ -36,6 +36,9 @@ function Get-PerformanceRecord {
         throw "invalid by parameter '$by'"
     }
 
+    Write-Host ([string]::new('-', 80)) -ForegroundColor Blue
+    Write-Host "Performance by $By ordered by TotalDuration" -ForegroundColor Blue
+
     $group |
     Select-Object name, count, (totalDuration), (avgDuration) |
     Sort-Object 'TotalDuration (ms)' |
@@ -44,4 +47,7 @@ function Get-PerformanceRecord {
         @{Expression = 'TotalDuration (ms)' ; FormatString = '#,##0' },
         @{Expression = 'AverageDuration (ms)' ; FormatString = '#,##0.00' } |
     Out-String | Write-Host -ForegroundColor Blue
+
+    Write-Host ([string]::new('-', 80)) -ForegroundColor Blue
+
 }

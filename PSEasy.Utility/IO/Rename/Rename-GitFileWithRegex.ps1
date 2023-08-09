@@ -1,9 +1,9 @@
 <#
+.SYNOPSIS
 Use this to bulk rename files
 
+.DESCRIPTION
 Will combine the RegexPrefix, Find and RegexSuffix into a regex case-sensitive compare on the whole filename (including extension)
-
-Will
 
 use with care.
  - Try on a small folder and don't recurse first to make sure it does what you expect.
@@ -25,7 +25,6 @@ $renameParams = @{
     Folder = '.\somePath\'
     Find = '([_.]|\b|^)Salesforce([_.])'
     Replace = '$1salesforce$2'
-    CaseOnlyChange = $true
 }
 .\script\Rename-GitFile.ps1 @renameParams
 

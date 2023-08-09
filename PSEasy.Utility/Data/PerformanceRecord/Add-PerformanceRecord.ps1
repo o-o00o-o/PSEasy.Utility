@@ -4,7 +4,7 @@ function Add-PerformanceRecord {
         [bool]$RecordPerformance,
         [string]$Stage = $null,
         [string]$Entity = $null,
-        [Parameter()][ValidateSet('Host', 'Verbose')][string]$WriteTo
+        [Parameter()][ValidateSet('Host', 'Verbose', '')][string]$WriteTo
     )
     if ($RecordPerformance) {
         $PerformanceStore.Add(
