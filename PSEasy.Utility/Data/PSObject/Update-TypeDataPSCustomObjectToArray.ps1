@@ -5,9 +5,9 @@
 #>
 
 Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:$false -MemberType ScriptMethod -Force -MemberName "ToArray" -Value { #$ConvertToArrayOfPropertiesScript
-  [OutputType([PSCustomObject[]])]
-  param(
-    [Parameter(Position)][string]$AddPropertyNameAs = 'Name'
+    [OutputType([PSCustomObject[]])]
+    param(
+        [Parameter(Position)][string]$AddPropertyNameAs = 'Name'
     )
     ConvertTo-Array -InputObject $this -AddPropertyNameAs $AddPropertyNameAs #-ReadOnly
 }
@@ -15,10 +15,9 @@ Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:
 # world like to use ConvertTo-Array for this but because it works on a pipeline we can't detect 0 members
 Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:$false -MemberType ScriptMethod -Force -MemberName "HasProperties" -Value { #$ConvertToArrayOfPropertiesScript
     [OutputType([bool])]
-    $i = 0
-    ($this.PSObject.Properties.GetEnumerator()) | foreach-Object {$i++}
-    Write-Output ($i -ne 0)
-  }
+    param()
+    Write-Output (Test-HasProperty -InputObject $this)
+}
 
 
 # It really would be better to not have to put () at the end but it doesn't work as a property

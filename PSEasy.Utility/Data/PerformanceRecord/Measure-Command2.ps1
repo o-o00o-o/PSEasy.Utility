@@ -20,13 +20,19 @@ into a performance store
     Get-PerformanceRecord -By Entity -PerformanceStore $Model.performance
 
 .NOTES
-General notes
+A consequence of using this is that it will complicate your stack traces on output
+which is often a good reason not to use it in scripts
+
+Really need to find a way to solve that but not sure how to post an error without it
+coming from this
+
 #>#>
 function Measure-Command2 {
+    [CmdletBinding()]
     param(
-        [Parameter(Position = 1)][ScriptBlock]$Expression,
-        [Parameter()][System.Collections.Generic.Dictionary[String, PSCustomObject]] $PerformanceStore,
-        [Parameter()][bool]$RecordPerformance,
+        [Parameter(Mandatory, Position = 1)][ScriptBlock]$Expression,
+        [Parameter(Mandatory)][System.Collections.Generic.Dictionary[String, PSCustomObject]] $PerformanceStore,
+        [Parameter()][bool]$RecordPerformance = $true,
         [Parameter()][string]$Stage = $null,
         [Parameter()][string]$Entity = $null,
         [Parameter()][ValidateSet('Host', 'Verbose', '')][string]$WriteTo
@@ -34,10 +40,18 @@ function Measure-Command2 {
     $performanceParams = @{
         PerformanceStore  = $PerformanceStore
         RecordPerformance = $RecordPerformance
-        Stage = $Stage
-        Entity = $Entity
     }
-    Add-PerformanceRecord @performanceParams -WriteTo $WriteTo
-    Write-Output ($Expression.InvokeReturnAsIs())
+
+    if ($Stage) { $performanceParams.Stage = $Stage }
+    if ($Entity) { $performanceParams.Entity = $Entity }
+
+    $null = Add-PerformanceRecord @performanceParams -WriteTo $WriteTo
+    try {
+        Write-Output ($Expression.InvokeReturnAsIs())
+    }
+    catch {
+        # would love to suppress this function from the stack trace so that we are invisible and directly point to the real exception
+        $PSCmdlet.WriteError( [Management.Automation.ErrorRecord]::new($_.Exception.InnerException, $_.FullyQualifiedErrorId, $_.CategoryInfo.Category, $_.TargetObject ))
+    }
     Complete-PerformanceRecord @performanceParams
 }

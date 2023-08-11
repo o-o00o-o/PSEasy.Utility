@@ -3,5 +3,5 @@ function Get-PerformanceRecordMessage {
         [string]$Stage,
         [string]$Entity
     )
-    Write-Output "$([string]::Join(' | ', (($Stage, $Entity) | where-Object {$_ -ne ''})))"
+    Write-Output "$([string]::Join(' | ', (($Stage, $Entity) | where-Object {$_})))"
 }

@@ -1,14 +1,18 @@
 function Add-PerformanceRecord {
     param(
-        [System.Collections.Generic.Dictionary[String, PSCustomObject]] $PerformanceStore,
-        [bool]$RecordPerformance,
+        [System.Collections.Generic.Dictionary[String, PSCustomObject]] $PerformanceStore = (Get-PerformanceStore),
+        [bool]$RecordPerformance = $true,
         [string]$Stage = $null,
         [string]$Entity = $null,
-        [Parameter()][ValidateSet('Host', 'Verbose', '')][string]$WriteTo
+        [Parameter()][ValidateSet('Host', 'Verbose', '')][string]$WriteTo = '',
+        [Parameter()][switch]$OutKey
     )
     if ($RecordPerformance) {
+
+        $key = Get-PerformanceRecordKey -Stage $Stage -Entity $Entity
+
         $PerformanceStore.Add(
-            (Get-PerformanceRecordKey -Stage $Stage -Entity $Entity),
+            $key,
             [PSCustomObject]@{
                 Stage     = $Stage
                 Entity    = $Entity
@@ -25,6 +29,10 @@ function Add-PerformanceRecord {
             } elseif ($WriteTo -eq 'Verbose') {
                 Write-Verbose $msg
             }
+        }
+
+        if ($OutKey) {
+            Write-Output $Key
         }
     }
 

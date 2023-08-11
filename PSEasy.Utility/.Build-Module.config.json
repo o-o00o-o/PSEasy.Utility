@@ -9,7 +9,7 @@
     },
     "File":{
         "FileSpec": "*-*.ps1",
-        "ExcludeSpec": ["*.Tests.ps1", "Import-ModuleFunction.ps1"],
+        "ExcludeSpec": ["*.Tests.ps1", "Import-ModuleFunction.ps1", "--*.ps1"],
         /* "PublicOnlyIfIndicated" or "'PublicByDefault" */
         "ExportMode": "PublicByDefault"
     }

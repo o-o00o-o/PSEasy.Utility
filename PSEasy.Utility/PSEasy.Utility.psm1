@@ -30,6 +30,7 @@
 . "$PSScriptRoot\Data\PSObject\ConvertTo-HashtableBased.ps1"
 . "$PSScriptRoot\Data\PSObject\Edit-ConvertDateTimePropertyToString.ps1"
 . "$PSScriptRoot\Data\PSObject\Remove-Property.ps1"
+. "$PSScriptRoot\Data\PSObject\Test-HasProperty.ps1"
 . "$PSScriptRoot\Data\PSObject\Update-TypeDataPSCustomObjectToArray.ps1"
 . "$PSScriptRoot\Data\PSSessionVariable\Add-PSSessionEntry.ps1"
 . "$PSScriptRoot\Data\PSSessionVariable\Initialize-PSSessionVariable.ps1"
