@@ -6,7 +6,11 @@ function Get-PerformanceRecord {
 
         [Parameter(Mandatory)]
         [ValidateSet('Stage', 'Entity')]
-        $By
+        $By,
+
+        [Parameter()]
+        [ValidateSet('TotalDuration (ms)', 'Name')]
+        $OrderBy
         )
         function totalDuration {
             Write-Output (
@@ -37,11 +41,12 @@ function Get-PerformanceRecord {
     }
 
     Write-Host ([string]::new('-', 80)) -ForegroundColor Blue
-    Write-Host "Performance by $By ordered by TotalDuration" -ForegroundColor Blue
+
+    Write-Host "Performance by $By ordered by $orderBy" -ForegroundColor Blue
 
     $group |
     Select-Object name, count, (totalDuration), (avgDuration) |
-    Sort-Object 'TotalDuration (ms)' |
+    Sort-Object $orderBy |
     Format-Table Name,
         count,
         @{Expression = 'TotalDuration (ms)' ; FormatString = '#,##0' },
