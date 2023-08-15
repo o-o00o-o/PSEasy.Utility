@@ -7,7 +7,7 @@
 Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:$false -MemberType ScriptMethod -Force -MemberName "ToArray" -Value { #$ConvertToArrayOfPropertiesScript
     [OutputType([PSCustomObject[]])]
     param(
-        [Parameter(Position)][string]$AddPropertyNameAs = 'Name'
+        [Parameter(Position = 1)][string]$AddPropertyNameAs = 'Name'
     )
     ConvertTo-Array -InputObject $this -AddPropertyNameAs $AddPropertyNameAs #-ReadOnly
 }
