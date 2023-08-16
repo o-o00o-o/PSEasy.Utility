@@ -19,9 +19,15 @@ Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:
     Write-Output (Test-HasProperty -InputObject $this)
 }
 
-
 # It really would be better to not have to put () at the end but it doesn't work as a property
 #    This actually hangs the whole system. We think due to https://github.com/PowerShell/PowerShell/issues/5797
 # Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -MemberType ScriptProperty -Force -MemberName "ToArray" -Value { #$ConvertToArrayOfPropertiesScript
 #     & "$PSScriptRoot\ConvertTo-Array.ps1" -InputObject $this -ReadOnly
 #}
+
+# this is an option for a temporary workaround for the ConvertTo-Array optimisation - we used to use a custom object with a Value property to store the name value but we now just use a string for performance. Add a dummy Value property so that existing scripts continue to work for now
+update-TypeData -TypeName "System.String" -MemberType ScriptProperty -MemberName 'Value' -Value {
+    [OutputType([string])]
+    param()
+    Write-Output ($this)
+}
