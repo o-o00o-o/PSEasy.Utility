@@ -26,8 +26,8 @@ Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:
 #}
 
 # this is an option for a temporary workaround for the ConvertTo-Array optimisation - we used to use a custom object with a Value property to store the name value but we now just use a string for performance. Add a dummy Value property so that existing scripts continue to work for now
-update-TypeData -TypeName "System.String" -MemberType ScriptProperty -MemberName 'Value' -Value {
-    [OutputType([string])]
-    param()
-    Write-Output ($this)
-}
+# update-TypeData -TypeName "System.String" -MemberType ScriptProperty -MemberName 'Value' -Value {
+#     [OutputType([string])]
+#     param()
+#     Write-Output ($this)
+# }

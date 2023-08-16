@@ -12,7 +12,7 @@
 RootModule = 'PSEasy.Utility.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.5.3'
+ModuleVersion = '1.5.4'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -78,7 +78,7 @@ FunctionsToExport = 'Compress-ArchiveFolder', 'Invoke-CpuArtificialWorkload',
                'Complete-PerformanceRecord', 'Get-PerformanceRecord',
                'Get-PerformanceStore', 'Measure-Command2', 'Get-ObjectModelValue',
                'Set-ObjectModelValue', 'Test-ObjectModelPathIsSafe',
-               'Add-MemberIfNotExist', 'ConvertTo-Array', 'ConvertTo-ArrayLegacy',
+               'Add-MemberIfNotExist', 'ConvertTo-Array', 'ConvertTo-Array2',
                'ConvertTo-FlatObject', 'ConvertTo-Hashtable',
                'ConvertTo-HashtableBased', 'Edit-ConvertDateTimePropertyToString',
                'Remove-Property', 'Test-HasProperty', 'Add-PSSessionEntry',
