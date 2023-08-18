@@ -12,6 +12,14 @@ Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:
     ConvertTo-Array -InputObject $this -AddPropertyNameAs $AddPropertyNameAs #-ReadOnly
 }
 
+Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:$false -MemberType ScriptMethod -Force -MemberName "ToArray2" -Value { #$ConvertToArrayOfPropertiesScript
+    [OutputType([PSCustomObject[]])]
+    param(
+        [Parameter(Position = 1)][string]$AddPropertyNameAs = 'Name'
+    )
+    ConvertTo-Array2 -InputObject $this -AddPropertyNameAs $AddPropertyNameAs #-ReadOnly
+}
+
 # world like to use ConvertTo-Array for this but because it works on a pipeline we can't detect 0 members
 Update-TypeData -TypeName "System.Management.Automation.PSCustomObject" -WhatIf:$false -MemberType ScriptMethod -Force -MemberName "HasProperties" -Value { #$ConvertToArrayOfPropertiesScript
     [OutputType([bool])]
