@@ -1,10 +1,12 @@
-function ConvertTo-Array2{
+function ConvertTo-Array2 {
     [CmdletBinding()]
     param(
         [Parameter(ValueFromPipeline)][PSCustomObject]$InputObject,
         [Parameter()][Hashtable]$AddProperties = @{},
         [Parameter()][String]$AddPropertyNameAs = 'Name'
     )
+    begin {}
+
     process {
         $propEnum = $InputObject.PSObject.Properties.GetEnumerator()
 
@@ -42,13 +44,14 @@ function ConvertTo-Array2{
                     Add-Property -PropertyName $property.Name -Expression ([ScriptBlock]::Create("'$($property.Value)'"))
                 }
             }
+
+            Write-Output (
+                $InputObject.PSObject.Properties |
+                Select-Object @selectPropertyParam -ExpandProperty value |
+                Where-Object { $_.GetType().Name -eq 'PSCustomObject' }
+            )
         }
-
-
-        Write-Output (
-            $InputObject.PSObject.Properties |
-            Select-Object @selectPropertyParam -ExpandProperty value |
-            Where-Object { $_.GetType().Name -eq 'PSCustomObject' }
-        )
     }
+
+    end {}
 }

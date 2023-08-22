@@ -66,7 +66,7 @@ param(
                          $_.references.PSObject.Properties['olad']
                     } | foreach {$_.references.olad} | foreach{$_ | gm}
       This doesn't (shows string)
-        $vegadw.starTables.FactTrackedSales.fields.ToArray()) | Where-Object {
+        $vegadw.starTables.FactTrackedSales.fields.ToArray2()) | Where-Object {
                          $_.PSObject.Properties['references'] -and
                          $_.references.PSObject.Properties['olad']
                     } | foreach {$_.references.olad} | foreach{$_ | gm}

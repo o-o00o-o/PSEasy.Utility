@@ -4,7 +4,7 @@ A bunch of basic Powershell utility functions that should be in Powershell direc
 
 - Powershell Module development helpers
 - PSObject helpers
-    - ConvertTo-Array (also available as .ToArray() function on all PSCustomObjects) to easily loop through properties
+    - ConvertTo-Array (also available as .ToArray2() function on all PSCustomObjects) to easily loop through properties
     - ConvertTo-FlatObject for easy comparison
     - ObjectModel functions to work with nested PSCustomObjects efficiently
     - Hashtable functions
