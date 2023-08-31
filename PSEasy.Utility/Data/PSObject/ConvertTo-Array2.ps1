@@ -9,8 +9,8 @@ function ConvertTo-Array2 {
 
     process {
         $propEnum = $InputObject.PSObject.Properties.GetEnumerator()
-
-        if ($propEnum.MoveNext() -and $propEnum.Current.value -is [PSCustomObject]) {
+        $hasOneProperty = $propEnum.MoveNext()
+        if ($hasOneProperty -and $propEnum.Current.value -is [PSCustomObject]) {
             # we have at least one property and its value is a PSCustomObject
             if ($propEnum.current.value.PSObject.Properties.GetEnumerator().MoveNext()) {
                 $selectPropertyParam = @{
@@ -47,8 +47,16 @@ function ConvertTo-Array2 {
 
             Write-Output (
                 $InputObject.PSObject.Properties |
-                Select-Object @selectPropertyParam -ExpandProperty value |
-                Where-Object { $_.GetType().Name -eq 'PSCustomObject' }
+                Where-Object { $_.value.GetType().Name -eq 'PSCustomObject' } |
+                Select-Object @selectPropertyParam -ExpandProperty value
+            )
+
+        }
+        elseif ($hasOneProperty -and $propEnum.Current.value -is [string]) {
+            Write-Output (
+                $InputObject.PSObject.Properties |
+                Where-Object { $_.value.GetType().Name -eq 'String' } |
+                Select-Object -Property Name, Value
             )
         }
     }
