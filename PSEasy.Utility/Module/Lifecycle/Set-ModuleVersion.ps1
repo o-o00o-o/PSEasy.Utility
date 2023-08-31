@@ -40,17 +40,21 @@ function Set-ModuleVersion {
     $nVer = [System.Management.Automation.SemanticVersion]::new($nMajor, $nMinor, $nPatch)
 
     # module definition ps file
-    $moduleDefinitionRegex = "(?<Preamble>ModuleVersion\s*=\s*)'(?<Major>\d+).(?<Minor>\d+).(?<Patch>\d+)'"
+    # Note that this regex can get confused with other module version specifications (e.g. RequiredModules)
+    # We assume that this is a new line with no spaces before it..
+    # this is tricky as Update-ModuleManifest is buggy and it is a powershell code structure instead of a json
+    # doc.. so limited simple options
+    $moduleDefinitionRegex = "(?<Preamble>\nModuleVersion\s*=\s*)'(?<Major>\d+).(?<Minor>\d+).(?<Patch>\d+)'"
     $moduleDefinitionReplace = "`${Preamble}'$($nVer.Major).$($nVer.Minor).$($nVer.Patch)'"
 
     (Get-Content $moduleDefinitionPath -raw) -replace $moduleDefinitionRegex, $moduleDefinitionReplace |
-    Out-File $moduleDefinitionPath
+    Out-File $moduleDefinitionPath -NoNewline
 
     # nuspec xml file
     $nuspecRegex = "(?<Preamble>\<version\>)(?<Major>\d+).(?<Minor>\d+).(?<Patch>\d+)(?<Appendix>\</version\>)"
     $nuspecReplace = "`${Preamble}$($nVer.Major).$($nVer.Minor).$($nVer.Patch)`${Appendix}"
     (Get-Content $nuspecPath -raw) -replace $nuspecRegex, $nuspecReplace |
-    Out-File $nuspecPath
+    Out-File $nuspecPath -NoNewline
 
     # finally write version file
     set-content -Path $versionFilePath -value $nVer.ToString() -Force
