@@ -9,7 +9,7 @@ function Get-CleanErrorString {
         } else {
             $getErrorString = Get-Error | Out-String
         }
-        # string green text start and end and inflate embedded \n 's
-        return $getErrorString.Replace('[92m', '').Replace('[0m', '').Replace('\n', "`r`n")
+        # remove console command characters and inflate embedded \n 's
+        return $getErrorString.Replace('\n', "`r`n") -Replace '\[[0-9;]+m', ''
     }
 }

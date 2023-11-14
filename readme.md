@@ -62,13 +62,13 @@ Install-Module PSEasy.Utility
 - Validate and Build the psd1/psm1 files by running ```Build-Module```
 
     ``` powershell
-    Build-Module .\module\PSEasy.Utility\
+    Build-Module .\module\PSEasy.Utility\ -Import
     ```
 
     - Import switch to import directly into the current session (note that any scripts with #requires for this module will reload the installed version - so useful for local testing only)
     - Load switch ensures that it can be loaded into a new session correctly
 
-- Locally install the module
+- Locally install the module (not generally needed)
 
     ``` powershell
     Install-ModuleFromFolder .\module\PSEasy.Utility\
