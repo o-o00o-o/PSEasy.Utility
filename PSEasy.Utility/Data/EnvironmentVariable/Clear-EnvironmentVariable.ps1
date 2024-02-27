@@ -1,25 +1,26 @@
 function Clear-EnvironmentVariable {
+    [CmdletBinding()]
     param(
-        [string]$Name,
-        [System.EnvironmentVariableTarget]$Target
+        [parameter(Mandatory)][string]$Name,
+        [parameter()][string]$Target
     )
-    if ([System.Environment]::GetEnvironmentVariable($Name, [System.EnvironmentVariableTarget]::User -and
-        (   $Target -eq [System.EnvironmentVariableTarget]::User -or
-            -not $Target
-         ))) {
+    if ([System.Environment]::GetEnvironmentVariable($Name, [System.EnvironmentVariableTarget]::User) -and
+        (   -not $Target -or
+          $Target -eq [System.EnvironmentVariableTarget]::User
+         )) {
         [System.Environment]::SetEnvironmentVariable($Name, $null, [System.EnvironmentVariableTarget]::User)
     }
 
     if ([System.Environment]::GetEnvironmentVariable($Name, [System.EnvironmentVariableTarget]::Process) -and
-    (   $Target -eq [System.EnvironmentVariableTarget]::Process -or
-        -not $Target
+    (   -not $Target -and
+        $Target -eq [System.EnvironmentVariableTarget]::Process
      )) {
         [System.Environment]::SetEnvironmentVariable($Name, $null, [System.EnvironmentVariableTarget]::Process)
     }
 
     if ([System.Environment]::GetEnvironmentVariable($Name, [System.EnvironmentVariableTarget]::Machine) -and
-    (   $Target -eq [System.EnvironmentVariableTarget]::Machine -or
-        -not $Target
+    (   -not $Target -or
+        $Target -eq [System.EnvironmentVariableTarget]::Machine
      )) {
         [System.Environment]::SetEnvironmentVariable($Name, $null, [System.EnvironmentVariableTarget]::Machine)
     }

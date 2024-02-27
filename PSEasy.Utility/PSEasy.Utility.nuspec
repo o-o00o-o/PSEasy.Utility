@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PSEasy.Utility</id>
-    <version>1.5.9</version>
+    <version>1.5.10</version>
     <authors>bgerhardi</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
