@@ -28,8 +28,13 @@ function Start-Logging {
         [switch]
         $NoRemoveLog
     )
-    if (-not $NoRemoveLog) {
-        Remove-Log -PreferredFolder $PreferredFolder -ApplicationName $ApplicationName
+    try {
+        if (-not $NoRemoveLog) {
+            Remove-Log -PreferredFolder $PreferredFolder -ApplicationName $ApplicationName
+        }
+    } catch {
+        # our mission is to start-logging, so if we can't cleanup - not the end of the world
+        $_ | Get-Error | Out-String | Write-Warning
     }
 
     # check if we have permissions - otherwise don't log
