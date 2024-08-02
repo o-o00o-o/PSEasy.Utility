@@ -82,20 +82,27 @@ Install-Module PSEasy.Utility
 
     e.g.
 
-    setup your profile with an easy to use by putting the below in your ```code $profile``` (setup the file with the commented code)
-    ```
-    <#
-    # to set this password use
-    # Set-Content -Path ~\PsEasy.NuGetApiKey.user.secret -Value ('**redactedkey**' | ConvertTo-SecureString -AsPlainText | ConvertFrom-SecureString) -Force
-    #>
-    $global:PsEasyNuGetApiKey = Get-Content '~\PSEasy.NuGetApiKey.user.secret' | ConvertTo-SecureString
-    function Get-PSEasyNuGetApiKey {($PsEasyNuGetApiKey | ConvertFrom-SecureString -AsPlainText)}
-    ```
-
     ``` powershell
     Set-ModuleVersion -modulepath '.\module\PSEasy.Module\' -VersionIncrementType Patch
     Publish-Module -path '.\module\PSEasy.Module\' -Verbose -NuGetApiKey 'Your key here' -whatif
-    # or if you have the key in a securestring variable
+    ```
+
+    setup your profile with an easy to use by putting the below in your ```code $profile``` (setup the file with the commented code)
+    ```
+    <#
+    setup encrypted password one-time with
+
+    $password = Read-Host "Enter Password" -AsSecureString
+    $fileLocation = '~\PsEasy.NuGetApiKey.user.secret'
+    Set-Content -Path $fileLocation -Value $password -Force
+    #>
+
+    $global:PsEasyNuGetApiKey = Get-Content $fileLocation | ConvertTo-SecureString
+
+    function Get-PSEasyNuGetApiKey {($PsEasyNuGetApiKey | ConvertFrom-SecureString -AsPlainText)}
+    ```
+
+    then use this safely with 
     # Publish-Module -path ..\..\PSEasy\PSEasy.Utility\PSEasy.Utility\ -Verbose -NuGetApiKey (Get-PsEasyNuGetApiKey) -Whatif
     # then run without whatif if no errors
     ```

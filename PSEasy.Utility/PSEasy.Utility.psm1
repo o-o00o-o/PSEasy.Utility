@@ -26,6 +26,7 @@
 . "$PSScriptRoot\Data\PSObject\Add-MemberIfNotExist.ps1"
 . "$PSScriptRoot\Data\PSObject\ConvertTo-Array.ps1"
 . "$PSScriptRoot\Data\PSObject\ConvertTo-Array2.ps1"
+. "$PSScriptRoot\Data\PSObject\ConvertTo-Array3.ps1"
 . "$PSScriptRoot\Data\PSObject\ConvertTo-FlatObject.ps1"
 . "$PSScriptRoot\Data\PSObject\ConvertTo-Hashtable.ps1"
 . "$PSScriptRoot\Data\PSObject\ConvertTo-HashtableBased.ps1"
