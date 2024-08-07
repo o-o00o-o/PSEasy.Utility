@@ -31,10 +31,21 @@ function Add-HashtableItem {
         Write-Debug "Add-HashtableItem: Adding to Hashtable $Key = $Value"
         if ($Hashtable.ContainsKey($Key)) {
             switch ($KeyExistsBehaviour) {
-                'Overwrite' { $Hashtable.Add($Key , $Value) }
-                'Error' {throw "hashtable already has a key $Key and KeyExistsBehaviour is set to $KeyExistsBehaviour"}
-                Default {}
+                'Overwrite' {
+                    Write-Debug 'overwrite'
+                    $Hashtable[$Key] = $Value
+                }
+                'Error' {
+                    Write-Debug 'Error'
+                    throw "hashtable already has a key $Key and KeyExistsBehaviour is set to $KeyExistsBehaviour"
+                }
+                Default {
+                    Write-Debug 'leaving existing'
+                }
             }
+        } else {
+            Write-Debug 'adding new'
+            $Hashtable.Add($Key , $Value)
         }
     }
 }

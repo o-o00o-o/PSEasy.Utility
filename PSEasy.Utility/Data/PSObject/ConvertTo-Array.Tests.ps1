@@ -27,7 +27,6 @@ Describe "library\ConvertTo-Array testinput1" {
         }
 '@ | ConvertFrom-Json
 
-
         [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '', Justification = "Script Analyzer doesn't deal with scope blocks well. Pester allows these variables to be used in other child scopes and we do use them, so the warning is incorrect")]
         $testInput2 = @'
         {
