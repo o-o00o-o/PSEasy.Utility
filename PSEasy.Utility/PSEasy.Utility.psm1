@@ -42,6 +42,7 @@
 . "$PSScriptRoot\Data\Value\Get-HashtableFromRemainingArgument.ps1"
 . "$PSScriptRoot\Data\Value\Get-NullIf.ps1"
 . "$PSScriptRoot\Data\Value\Get-NullIfDBNull.ps1"
+. "$PSScriptRoot\Data\Value\Out-HostSmartAnsi.ps1"
 . "$PSScriptRoot\Data\Xml\Format-Xml.ps1"
 . "$PSScriptRoot\IO\Content\Test-ContentNoPassword.ps1"
 . "$PSScriptRoot\IO\Content\Test-ContentNoTab.ps1"
