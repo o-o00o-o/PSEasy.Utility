@@ -37,9 +37,11 @@ function Out-HostSmartAnsi {
         [object]
         $InputObject
     )
-    $previousOutputRendering = $PSStyle.OutputRendering
-    $PSStyle.OutputRendering = [Console]::IsOutputRedirected ? 'PlainText' : 'ANSI'
-    $InputObject | Out-Host
-    $PSStyle.OutputRendering = $previousOutputRendering
+    process {
+        $previousOutputRendering = $PSStyle.OutputRendering
+        $PSStyle.OutputRendering = [Console]::IsOutputRedirected ? 'PlainText' : 'ANSI'
+        $InputObject | Out-String | Write-Host # don't use Out-Host as it seems to cause no output in some cases, especially if using for catch blocks
+        $PSStyle.OutputRendering = $previousOutputRendering
+    }
 
 }

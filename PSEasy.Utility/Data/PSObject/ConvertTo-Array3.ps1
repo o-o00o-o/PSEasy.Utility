@@ -1,4 +1,4 @@
-function ConvertTo-Array3 {
+﻿function ConvertTo-Array3 {
     [CmdletBinding()]
     param(
         [Parameter(ValueFromPipeline)][PSCustomObject]$InputObject,
@@ -23,7 +23,7 @@ function ConvertTo-Array3 {
                     if (-not $PropertyNameFirst) {
                         $object = ConvertTo-Json $property.value -Depth $Depth -WarningAction SilentlyContinue | ConvertFrom-Json #
 
-                        Add-Member -in $object -NotePropertyName $AddPropertyNameAs -NotePropertyValue $property.name -force
+                        $object | Add-Member -NotePropertyName $AddPropertyNameAs -NotePropertyValue $property.name -force
 
                     } else {
                         $childProperties = [ordered]@{}
