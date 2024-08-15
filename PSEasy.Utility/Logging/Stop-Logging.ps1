@@ -3,7 +3,7 @@ function Stop-Logging {
     [CmdletBinding()]
     param()
     try {
-        Stop-Transcript
+        $null = Stop-Transcript
     }
     catch {
         Write-Warning "Unable to Stop-Transcript. $($_.Exception.Message)"

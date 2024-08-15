@@ -40,7 +40,7 @@ function Start-Logging {
     # check if we have permissions - otherwise don't log
     $logPath = (Get-LogPath -PreferredFolder $PreferredFolder -CommandName $CommandName -ApplicationName $ApplicationName)
     try {
-        Start-Transcript -LiteralPath $logPath -NoClobber -IncludeInvocationHeader
+        $null = Start-Transcript -LiteralPath $logPath -NoClobber -IncludeInvocationHeader
         # get the original command line being executed so it is at the top of the log
 
         if (-not $CallStack) {
