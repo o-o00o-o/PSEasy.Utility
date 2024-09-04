@@ -102,7 +102,7 @@ Install-Module PSEasy.Utility
     function Get-PSEasyNuGetApiKey {($PsEasyNuGetApiKey | ConvertFrom-SecureString -AsPlainText)}
     ```
 
-    then use this safely with 
+    then use this safely with
     # Publish-Module -path ..\..\PSEasy\PSEasy.Utility\PSEasy.Utility\ -Verbose -NuGetApiKey (Get-PsEasyNuGetApiKey) -Whatif
     # then run without whatif if no errors
     ```
