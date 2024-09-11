@@ -14,6 +14,6 @@ function Remove-Log {
     $logsToDelete = @(Get-ChildItem -Path $logFolder | Where-object { $_.CreationTime -lt (Get-Date).AddDays(-$daysOld) })
     if ($logsToDelete) {
         Write-Host "Removing $($logsToDelete.Count) logs older than $daysOld days"
-        $logsToDelete | Remove-Item 1>$null
+        $logsToDelete | Remove-Item -ErrorAction SilentlyContinue 1>$null # error may happen if this is running in parallel with others
     }
 }
