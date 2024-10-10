@@ -1,7 +1,7 @@
-function Get-ObjectModelValue {
+function Get-ObjectPropertyValue {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute(<#Category#>'PSAvoidUsingInvokeExpression', <#CheckId#>'', Justification = 'We are protecting the call to ensure that it is safe before Invoking', Scope='function')]
     param(
-        [Parameter(Mandatory)][PSCustomObject]$ObjectModel,
+        [Parameter(Mandatory)][Alias('InputObject')][PSCustomObject]$ObjectModel,
         [Parameter(Mandatory)][string]$Path,
         # array of known secret paths to check against for extra checking
         [Parameter()][string[]]$KnownSecrets = @()
@@ -17,3 +17,4 @@ function Get-ObjectModelValue {
         return $out
     }
 }
+Set-Alias Get-ObjectModelValue Get-ObjectPropertyValue

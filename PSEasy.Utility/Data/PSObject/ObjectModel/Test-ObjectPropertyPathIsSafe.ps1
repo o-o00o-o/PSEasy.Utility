@@ -4,7 +4,7 @@
 # Secrets only flag additionally checks that the path is a SecureString and exists in our SecretConfig
 # Will return true or false
 # if false may  return a warning with the details of the issue if it is just not available
-function Test-ObjectModelPathIsSafe {
+function Test-ObjectPropertyPathIsSafe {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute(<#Category#>'PSAvoidUsingInvokeExpression', <#CheckId#>'', Justification = 'We are protecting the call to ensure that it is safe before Invoking')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute(<#Category#>'PSReviewUnusedParameter', <#CheckId#>'ObjectModel', Justification = 'we are using it if you look carefully enough')]
 
@@ -48,3 +48,4 @@ function Test-ObjectModelPathIsSafe {
     }
     $return
 }
+Set-Alias Test-ObjectModelPathIsSafe Test-ObjectPropertyPathIsSafe

@@ -1,7 +1,7 @@
-function Set-ObjectModelValue {
+function Set-ObjectProperty {
     [CmdletBinding(SupportsShouldProcess)]
     param(
-        [Parameter(Mandatory)][PSCustomObject]$ObjectModel,
+        [Parameter(Mandatory)][Alias('InputObject')][PSCustomObject]$ObjectModel,
         # expects each key to have the path to the item in the object model
         [Parameter(ParameterSetName = 'Hashtable', Mandatory)][hashtable]$Hashtable,
         [Parameter(ParameterSetName = 'Single', Mandatory)][string]$Path,
@@ -59,3 +59,5 @@ function Set-ObjectModelValue {
     }
 
 }
+# add alias Set-ObjectModelValue for Set-ObjectProperty
+Set-Alias -Name Set-ObjectModelValue -Value Set-ObjectProperty
