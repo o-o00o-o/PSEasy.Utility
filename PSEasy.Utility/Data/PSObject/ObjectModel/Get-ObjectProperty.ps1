@@ -1,7 +1,7 @@
 
 <#
 .SYNOPSIS
-Gets all paths where values have a token e.g. '$(blah)' that will need replacing
+Recursively gets properties where the name matches a specified pattern
 
 .DESCRIPTION
 

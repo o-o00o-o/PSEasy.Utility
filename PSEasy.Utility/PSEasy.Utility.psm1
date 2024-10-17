@@ -26,6 +26,7 @@
 . "$PSScriptRoot\Data\PSObject\ObjectModel\Merge-Object.ps1"
 . "$PSScriptRoot\Data\PSObject\ObjectModel\Set-ObjectProperty.ps1"
 . "$PSScriptRoot\Data\PSObject\ObjectModel\Test-ObjectPropertyPathIsSafe.ps1"
+. "$PSScriptRoot\Data\PSObject\ObjectModel\Update-ObjectWithTokenReplacement.ps1"
 . "$PSScriptRoot\Data\PSObject\Add-MemberIfNotExist.ps1"
 . "$PSScriptRoot\Data\PSObject\ConvertTo-Array.ps1"
 . "$PSScriptRoot\Data\PSObject\ConvertTo-Array2.ps1"
