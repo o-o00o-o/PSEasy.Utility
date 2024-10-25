@@ -92,8 +92,7 @@ function Build-Module {
             $ModuleManifestArgs = $config.Manifest | ConvertTo-Json | ConvertFrom-Json -AsHashtable
 
             # identify the files according to the config instruction
-            $files =
-            Get-ChildItem $ModulePath -filter $config.File.FileSpec -File -Recurse -Exclude ($config.File.ExcludeSpec)
+            $files = Get-ChildItem $ModulePath -filter $config.File.FileSpec -File -Recurse -Exclude ($config.File.ExcludeSpec)
 
             # test files and establish public files
             $files |
@@ -105,7 +104,7 @@ function Build-Module {
             Set-HashTableItem -ht $ModuleManifestArgs -k 'Path' -v $moduleManifestPath
             Set-HashTableItem -ht $ModuleManifestArgs -k 'RootModule' -v $psmFile
             Set-HashTableItem -ht $ModuleManifestArgs -k 'ModuleVersion' -v (Get-ModuleVersion -ModulePath $_modulePath)
-            # these we will leave as they are if they have been set by the build script
+            # functions and aliases will be set by Add-ModuleManifestExport above or defaulted here
             Set-HashTableItem -ht $ModuleManifestArgs -k 'FunctionsToExport' -v @() -safe
             Set-HashTableItem -ht $ModuleManifestArgs -k 'AliasesToExport' -v @() -safe
             Set-HashTableItem -ht $ModuleManifestArgs -k 'CmdletsToExport' -v @() -safe

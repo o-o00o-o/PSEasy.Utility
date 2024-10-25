@@ -8,6 +8,9 @@ Helps to build a ModuleManifest argument hashtable based from the details of the
 .PARAMETER File
 Array of files. Typically a result from Get-ChildItem
 
+.OUTPUTS
+Hashtable of ModuleManifest arguments
+
 .EXAMPLE
 
 #>
@@ -28,6 +31,7 @@ function Add-ModuleManifestExport {
     process {
         foreach ($_file in $File) {
             $nature = Get-ScriptNature -File $_file
+            $content = Get-ScriptContent -File $_file
 
             $export = if (-not $nature.PSObject.Properties['AccessibilityIndicator']) {
                 $false
@@ -48,6 +52,16 @@ function Add-ModuleManifestExport {
                     $ModuleManifestArgs.FunctionsToExport += $nature.filenameFunctionName
                 } else {
                     Write-Verbose "not exporting $($nature.filenameFunctionName)"
+                }
+
+                if ($content.aliases) {
+                    if (-not $ModuleManifestArgs.Contains('AliasesToExport')) {
+                        $ModuleManifestArgs.Add('AliasesToExport', @())
+                    }
+                    foreach ($alias in $content.aliases) {
+                        Write-Verbose "marking alias $($alias.name) for export"
+                        $ModuleManifestArgs.AliasesToExport += $alias.Name
+                    }
                 }
 
                 if ($PassThru) { Write-Output $_file }

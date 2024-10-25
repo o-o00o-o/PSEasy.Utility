@@ -17,4 +17,4 @@ function Get-ObjectPropertyValue {
         return $out
     }
 }
-Set-Alias Get-ObjectModelValue Get-ObjectPropertyValue
+Set-Alias -Name Get-ObjectModelValue -Value Get-ObjectPropertyValue
