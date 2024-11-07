@@ -243,6 +243,9 @@
                         Try
                         {
                             $DefaultTypeProps = @( $obj.gettype().GetProperties() | Select -ExpandProperty Name -ErrorAction Stop )
+                            if ($DefaultTypeProps -contains 'Length') {
+                                $DefaultTypeProps += 'Count' # Count is some kind of alias for Length, they seem to come together
+                            }
                             if($DefaultTypeProps.count -gt 0)
                             {
                                 Write-Verbose "Excluding default properties for $($obj.gettype().Fullname):`n$($DefaultTypeProps | Out-String)"
@@ -340,6 +343,7 @@
 
                     #Get the children's children we care about, and their names.  Also look for signs of a hashtable like type
                         $ChildrensChildren = $ChildValue.psobject.properties | Where {$ExcludeProps -notcontains $_.Name }
+
                         $HashKeys = if($ChildValue.Keys -notlike $null -and $ChildValue.Values)
                         {
                             $ChildValue.Keys
@@ -348,6 +352,7 @@
                         {
                             $null
                         }
+
                         Write-Debug "Found children's children $($ChildrensChildren | select -ExpandProperty Name | Out-String)"
 
                     #If we aren't at max depth or a leaf...
