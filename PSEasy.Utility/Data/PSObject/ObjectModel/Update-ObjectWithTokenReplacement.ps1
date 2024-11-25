@@ -16,7 +16,7 @@ function Update-ObjectWithTokenReplacement {
             $Token = $group.Name
             $Replacement = Get-ObjectPropertyValue -InputObject $ReplacementObject -Path $Token
 
-            if (-not $Replacement) {
+            if ($null -eq $Replacement) {
                 Write-Warning "Token $($Token) not found in ReplacementObject"
             }
             else {
