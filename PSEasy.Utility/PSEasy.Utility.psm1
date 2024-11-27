@@ -3,6 +3,8 @@
 . "$PSScriptRoot\Archive\Compress-ArchiveFolder.ps1"
 . "$PSScriptRoot\Cpu\Invoke-CpuArtificialWorkload.ps1"
 . "$PSScriptRoot\Data\Credential\Get-CredentialSilently.ps1"
+. "$PSScriptRoot\Data\DataSet\Get-Type.ps1"
+. "$PSScriptRoot\Data\DataSet\Out-DataTable.ps1"
 . "$PSScriptRoot\Data\EnvironmentVariable\Clear-EnvironmentVariable.ps1"
 . "$PSScriptRoot\Data\EnvironmentVariable\Get-EnvironmentVariable.ps1"
 . "$PSScriptRoot\Data\EnvironmentVariable\Set-EnvironmentVariable.ps1"
