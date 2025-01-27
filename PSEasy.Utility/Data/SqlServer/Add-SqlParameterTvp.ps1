@@ -13,6 +13,8 @@ splat = @{
 }
 $command | Add-SqlParameterTvp @splat
 
+.OUTPUTS
+The created parameter object
 #>
 function Add-SqlParameterTvp {
     [CmdletBinding()]
@@ -53,6 +55,6 @@ function Add-SqlParameterTvp {
             $param.Value = $Value
         }
 
-        $null = $Command.Parameters.Add($param)
+        Write-Output ($Command.Parameters.Add($param))
     }
 }

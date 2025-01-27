@@ -45,6 +45,7 @@
 . "$PSScriptRoot\Data\PSSessionVariable\Test-PSSessionEntry.ps1"
 . "$PSScriptRoot\Data\SecureString\ConvertTo-AesKey.ps1"
 . "$PSScriptRoot\Data\SecureString\Test-SecureStringEmpty.ps1"
+. "$PSScriptRoot\Data\SqlServer\Add-SqlParameterTvp.ps1"
 . "$PSScriptRoot\Data\Value\Get-HashtableFromRemainingArgument.ps1"
 . "$PSScriptRoot\Data\Value\Get-NullIf.ps1"
 . "$PSScriptRoot\Data\Value\Get-NullIfDBNull.ps1"
