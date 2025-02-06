@@ -13,6 +13,7 @@
 . "$PSScriptRoot\Data\Generic\Invoke-GenericMethod.ps1"
 . "$PSScriptRoot\Data\Hash\Get-Hash.ps1"
 . "$PSScriptRoot\Data\Hashtable\Add-HashtableItem.ps1"
+. "$PSScriptRoot\Data\Hashtable\Get-HashtableSubset.ps1"
 . "$PSScriptRoot\Data\Hashtable\Remove-HashtableItem.ps1"
 . "$PSScriptRoot\Data\Hashtable\Set-HashTableItem.ps1"
 . "$PSScriptRoot\Data\PerformanceRecord\Add-PerformanceRecord.ps1"
