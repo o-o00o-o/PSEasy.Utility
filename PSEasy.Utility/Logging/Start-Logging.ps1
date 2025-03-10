@@ -60,6 +60,7 @@ function Start-Logging {
         } else {
             "EXECUTING COMMAND LINE $([Environment]::NewLine)$($StackString.ToString())" | Write-Host  -ForegroundColor DarkBlue
         }
+        "LOGGING TO : $logPath" | Write-Host -ForegroundColor DarkBlue
     } catch {
         Write-Warning "Unable to Start-Transcript for $logPath. $($_.Exception.Message)"
     }

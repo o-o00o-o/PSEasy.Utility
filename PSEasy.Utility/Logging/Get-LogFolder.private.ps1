@@ -27,7 +27,8 @@ function Get-LogFolder {
     }
 
     if (-not $logfolder -or -not $havePermissions) {
-        $logFolder = Join-Path $ENV:TEMP $ApplicationName
+        $tempPath = [System.IO.Path]::GetFullPath($ENV:TEMP)
+        $logFolder = Join-Path $tempPath $ApplicationName
         # create the folder
         $null = New-Item $logfolder -force -ItemType Directory
     }
